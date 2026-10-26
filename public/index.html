@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habit ledger</title>
+<meta name="description" content="Post a square every day. A habit tracker styled as an accounting ledger.">
+<meta name="theme-color" content="#dfe7db">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23dfe7db'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%232f6b4f'/%3E%3Crect x='17' y='6' width='9' height='9' fill='none' stroke='%231d2733' stroke-width='2'/%3E%3Crect x='6' y='17' width='9' height='9' fill='none' stroke='%231d2733' stroke-width='2'/%3E%3Crect x='17' y='17' width='9' height='9' fill='%23c0432d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<noscript><p style="padding:32px">Habit ledger needs JavaScript. Turn it on to continue.</p></noscript>
+<main id="auth" class="auth" hidden>
+  <section class="acard">
+    <h1>Habit ledger</h1>
+    <div class="seg" id="am" role="tablist"><button class="on" data-m="login" role="tab" aria-selected="true">Sign in</button><button data-m="register" role="tab" aria-selected="false">Create account</button></div>
+    <h2 id="ah">Welcome back</h2><p class="s" id="ad">Pick up your streaks where you left them.</p>
+    <div id="ex"><a class="btn w gbtn" id="gg" href="/auth/google" hidden>Continue with Google</a><div class="or" id="or" hidden><span>or use your email</span></div></div>
+    <form id="af" novalidate>
+      <label class="fld" id="nf" hidden><span>Your name</span><input id="fn" name="name" type="text" autocomplete="name" maxlength="40"></label>
+      <label class="fld" id="ef"><span>Email</span><input id="fe" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254"></label>
+      <label class="fld pw" id="pf"><span id="pl">Password</span><input id="fp" name="password" type="password" autocomplete="current-password" maxlength="128"><button type="button" id="tg" aria-pressed="false">Show</button></label>
+      <div class="sm" id="sm" hidden><div id="smb"><i></i><i></i><i></i><i></i></div><div id="sml">At least 8 characters</div></div>
+      <div class="err" id="fm" role="alert" hidden></div>
+      <div class="ok" id="fo" role="status" hidden></div>
+      <button class="btn f w" id="fs" type="submit">Sign in</button>
+      <p class="alt" id="fg" hidden><button type="button" class="lnk2" data-m="forgot">Forgot your password?</button></p>
+      <p class="alt" id="bk" hidden><button type="button" class="lnk2" data-m="login">Back to sign in</button></p>
+    </form>
+  </section>
+  <section class="aart">
+    <h2>One square a day.</h2>
+    <p>Each square is a day you showed up. Try it: select squares and build a run.</p>
+    <div id="dn" aria-label="Practice grid"></div>
+    <div id="dl" role="status">Select a square to post your first day.</div>
+  </section>
+</main>
+<div id="app" hidden>
+<div class="sheet" id="sheet">
+  <div class="vb" id="vb" hidden>Confirm your email to keep your account secure. <button class="lnk2" id="rv">Resend the email</button></div>
+  <div class="top">
+    <div><h1 id="dt"></h1><p class="cap" id="cap"></p></div>
+    <div class="acts"><span class="who" id="who"></span><button class="btn" id="rev">Weekly review</button><button class="btn f" id="add">Add habit</button><button class="btn" id="out">Sign out</button></div>
+  </div>
+  <div class="tools"><span>Show</span><div class="seg" id="seg"><button class="on" data-w="53">Full year</button><button data-w="26">6 months</button></div><span>Select any square to post or void that day.</span></div>
+  <div class="head"><span>Today</span><span>Habit</span><span class="mos" id="mos"></span><span>Streak</span><span>30 days</span></div>
+  <div id="rows"></div>
+  <div class="tot" id="tot"></div>
+  <div class="chips" id="qa"></div>
+  <div class="foot"><span id="sv" role="status">All changes saved</span><button id="del">Delete account</button></div>
+</div></div>
+
+<div class="mask" id="m1"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="t1">
+  <h2 id="t1">Add habit</h2><p class="s">Name it as something you can post once a day.</p>
+  <label class="fld"><span>Habit</span><input type="text" id="hn" maxlength="40" placeholder="Stretch for 10 minutes"></label>
+  <div class="err" id="he" hidden></div>
+  <div class="fld"><span>Ink color</span><div class="sw" id="hs"></div></div>
+  <div class="mrow"><button class="btn f" id="hok">Add to ledger</button><button class="btn" data-x>Cancel</button></div>
+</div></div>
+<div class="mask" id="m2"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="t2">
+  <h2 id="t2">Weekly review</h2><p class="s" id="rs"></p>
+  <div id="rt"></div>
+  <label class="fld"><span>Note for this week</span><textarea id="rn" rows="3" placeholder="What got in the way? What worked?"></textarea></label>
+  <div class="mrow"><button class="btn f" id="rok">Save note</button><button class="btn" data-x>Close</button></div>
+</div></div>
+<div class="mask" id="m3"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="t3">
+  <h2 id="t3">Delete account</h2><p class="s">This permanently deletes your account and every entry. It cannot be undone.</p>
+  <label class="fld"><span id="dls">Password</span><input type="password" id="dp" autocomplete="current-password" maxlength="128"></label>
+  <div class="err" id="de" role="alert" hidden></div>
+  <div class="mrow"><button class="btn danger" id="dok">Delete my account</button><button class="btn" data-x>Keep my account</button></div>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>

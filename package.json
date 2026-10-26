@@ -1,0 +1,9 @@
+{
+  "name": "habit-ledger",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A habit tracker styled as an accounting ledger, with accounts, email confirmation, password reset and Google sign-in.",
+  "scripts": { "start": "node server.js", "test": "node test.js" },
+  "dependencies": { "pg": "^8.13.0" },
+  "engines": { "node": ">=18" }
+}
